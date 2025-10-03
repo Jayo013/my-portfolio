@@ -36,6 +36,24 @@ export const PROJECTS = [
     tech: ["React", "Node.js", "PostgreSQL"],
     links: { live: "#", github: "#" },
   },
+  {
+    title: "Results Portal1",
+    blurb: "Credential-gated student results portal with role-based access & exports.",
+    tech: ["React", "Node.js", "PostgreSQL"],
+    links: { live: "#", github: "#" },
+  },
+  {
+    title: "Results Portal2",
+    blurb: "Credential-gated student results portal with role-based access & exports.",
+    tech: ["React", "Node.js", "PostgreSQL"],
+    links: { live: "#", github: "#" },
+  },
+  {
+    title: "Results Portal3",
+    blurb: "Credential-gated student results portal with role-based access & exports.",
+    tech: ["React", "Node.js", "PostgreSQL"],
+    links: { live: "#", github: "#" },
+  },
 ];
 
 export const EXPERIENCE = [

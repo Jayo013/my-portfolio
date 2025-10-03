@@ -84,14 +84,14 @@
   --foreground: #ffffff;
 
   /* Cards & surfaces */
-  --card: #1a1a2e;
+  --card: #0f0f1f;
   --card-foreground: #ffffff;
 
   --popover: #1a1a2e;
   --popover-foreground: #ffffff;
 
   /* Primary buttons */
-  --primary: #6366f1; /* Indigo 500 */
+  --primary: #022ce9; /* Indigo 500 */
   --primary-foreground: #ffffff;
 
   /* Secondary buttons */
@@ -103,7 +103,7 @@
   --muted-foreground: #9ca3af; /* Gray 400 */
 
   /* Accents */
-  --accent: #7c3aed; /* Violet 600 */
+  --accent: #011a29; /* Violet 600 */
   --accent-foreground: #ffffff;
 
   /* Destructive (errors) */
@@ -111,9 +111,9 @@
   --destructive-foreground: #ffffff;
 
   /* Borders & inputs */
-  --border: rgba(255, 255, 255, 0.1);
-  --input: rgba(255, 255, 255, 0.15);
-  --ring: #6366f1;
+  --border: rgba(225, 225, 236, 0.386);
+  --input: rgba(227, 227, 235, 0.784);
+  --ring: #5153ca;
 
   /* Charts (optional palette) */
   --chart-1: #1a57ba;
@@ -148,7 +148,7 @@
   }
   /* Dark mode gradient background */
   .dark body {
-    background: linear-gradient(135deg, #050220 0%, #270433 25%, #3f0234 50%, #040426 75%, #070118 100%);
+    background: linear-gradient(135deg, #020111 0%, #310441 25%, #410235 50%, #010133 75%, #020111 100%);
     
     min-height: 100vh;
   }
