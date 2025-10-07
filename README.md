@@ -1,7 +1,7 @@
 # 🌐 My Portfolio
 
 This is my personal developer portfolio website built with **Next.js**, **TypeScript**, and **Tailwind CSS**.  
-It showcases my skills, projects, and experience in full-stack development and cloud technologies.
+It showcases my skills, projects, and experience in full-stack development.
 
 ---
 
@@ -10,19 +10,19 @@ It showcases my skills, projects, and experience in full-stack development and c
 - ⚡ **Next.js 13 App Router** with server-side rendering (SSR)
 - 🎨 **Tailwind CSS** for modern responsive UI
 - 🎭 Smooth animations with **Framer Motion**
-- 🛠️ Component-driven design (UI reusability)
+- 🛠️ Reusable component-driven design
 - 💡 Dark/Light mode toggle
 - 📱 Fully responsive (mobile-first design)
 - 📧 Contact form with Formspree integration (auto-email + thank-you response)
 
 ---
 
-## 🖥️ Tech Stack
+## 🖥️ Tech Stack (Used in this Portfolio)
 
-- **Frontend:** React, Next.js, TypeScript, Tailwind CSS, Framer Motion  
-- **Backend:** Node.js, Express, REST API  
-- **Databases:** PostgreSQL, MongoDB  
-- **Tools:** Git, Docker, Vite, IntelliJ IDEA  
-- **Design:** Figma, Adobe XD, UI/UX principles  
+- **Framework:** [Next.js](https://nextjs.org/)  
+- **Language:** [TypeScript](https://www.typescriptlang.org/)  
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/)  
+- **Animations:** [Framer Motion](https://www.framer.com/motion/)  
+- **Icons:** [Lucide React](https://lucide.dev/)   
 
 ---
