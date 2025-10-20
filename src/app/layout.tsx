@@ -15,21 +15,30 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* ensure the initial theme is set before React hydrates */}
+        {/* Help browsers choose the right color-scheme for default UA styling */}
+        <meta name="color-scheme" content="light dark" />
+        {/* Set initial theme BEFORE React hydrates to prevent mismatch/FOUC */}
         <script
+          // Keep this tiny and side-effect only; no JSX/React code.
           dangerouslySetInnerHTML={{
             __html: `
-              try {
-                const mql = window.matchMedia('(prefers-color-scheme: dark)');
-                const stored = localStorage.getItem('theme');
-                const dark = stored ? stored === 'dark' : mql.matches;
-                if (dark) document.documentElement.classList.add('dark');
-              } catch(e) {}
-            `,
+(function() {
+  try {
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var useDark = stored ? stored === 'dark' : prefersDark;
+    var root = document.documentElement;
+    if (useDark) root.classList.add('dark'); else root.classList.remove('dark');
+  } catch (e) {}
+})();`,
           }}
         />
       </head>
-      <body className="min-h-screen bg-background text-foreground antialiased">
+
+      <body
+        suppressHydrationWarning
+        className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-background text-foreground antialiased`}
+      >
         {children}
       </body>
     </html>

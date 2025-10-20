@@ -154,3 +154,53 @@
   }
 
 }
+
+
+/* ===== Orbiting dots around the avatar ===== */
+@keyframes orbit {
+  from { transform: rotate(0deg) translateX(var(--r)) rotate(0deg); }
+  to   { transform: rotate(360deg) translateX(var(--r)) rotate(-360deg); }
+}
+
+/* one small dot that flies in a circle using --r (radius) and --d (duration) */
+.orbit-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  border-radius: 9999px;
+  transform-origin: 0 0;               /* important: rotate around center */
+  animation: orbit var(--d) linear infinite;
+  filter: drop-shadow(0 0 8px currentColor);
+}
+
+/* ===== Soft floating shapes ===== */
+@keyframes floatY {
+  0%, 100% { transform: translateY(-4px) }
+  50%      { transform: translateY(6px) }
+}
+@keyframes floatX {
+  0%, 100% { transform: translateX(-4px) }
+  50%      { transform: translateX(6px) }
+}
+
+.float-piece {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  opacity: .35;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.65), rgba(255,255,255,0));
+  border: 1px solid rgba(255,255,255,.15);
+  box-shadow: 0 0 20px rgba(99,102,241,.25);
+  animation: floatY 6s ease-in-out infinite, floatX 7.5s ease-in-out infinite;
+}
+
+.piece-square { border-radius: 8px; }
+.piece-circle { border-radius: 9999px; }
+.piece-diamond {
+  transform: rotate(45deg);
+  border-radius: 6px;
+}
+
+
