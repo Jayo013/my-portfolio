@@ -8,6 +8,7 @@ import Experience from "@/component/experience/Experience";
 import Contact from "@/component/contact/Contact";
 import Footer from "@/component/layout/Footer";
 import AboutMe from "@/component/about/AboutMe";
+import Education from "@/component/education/Education";
 
 export default function Page() {
   return (
@@ -17,6 +18,7 @@ export default function Page() {
       <AboutMe />
       <Projects />
       <Skills />
+      <Education />
       <Experience />
       <Contact />
       <Footer />
