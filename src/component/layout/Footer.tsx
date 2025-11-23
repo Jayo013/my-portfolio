@@ -87,7 +87,7 @@ export default function Footer() {
               {/* If you have phone in your data, use it; else remove */}
               <li className="flex items-center gap-2 text-foreground/80">
                 <Phone className="h-5 w-5" />
-                <span>+94 768 324 613</span>
+                <span>+94 750 509 482</span>
               </li>
             </ul>
           </div>
