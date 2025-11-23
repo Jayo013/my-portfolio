@@ -34,11 +34,11 @@ export default function Projects() {
                   />
 
                   {/* Featured Badge (Optional) */}
-                  {p.featured && (
+                  {/*p.featured && (
                     <div className="absolute top-3 right-3 bg-orange-500 text-white text-xs px-3 py-1 rounded-full">
-                      Featured
+                     Featured
                     </div>
-                  )}
+                  )*/}
                 </div>
               )}
 
