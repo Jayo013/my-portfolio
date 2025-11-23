@@ -4,7 +4,7 @@ import { EXPERIENCE } from "@/data/Portfolio";
 
 export default function Experience() {
   return (
-    <Section id="experience" title="Experience & Education">
+    <Section id="experience" title="Experience">
       <div className="space-y-4">
         {EXPERIENCE.map((job) => (
           <Card key={job.company}>
