@@ -62,6 +62,28 @@ export const PROJECTS = [
   },
 ];
 
+export const EDUCATION = [
+  {
+    id: "edu-1",
+    title: "BSc in Computer Science",
+    institution: "University of Ruhuna",
+    period: "Reading (2023 — Present)",
+  },
+  {
+    id: "edu-2",
+    title: "Diploma in Software Engineering",
+    institution: "NIBM",
+    period: "2022 — 2023",
+  },
+  {
+    id: "edu-3",
+    title: "GCE Advanced Level",
+    institution: "Vidyaloka College - Galle",
+    period: "Completed",
+  },
+];
+
+
 export const EXPERIENCE = [
   {
     id: "exp-1",
@@ -83,4 +105,16 @@ export const EXPERIENCE = [
       "Automated deployments using Docker + CI/CD pipelines.",
     ],
   },
+  {
+    id: "exp-3",
+    company: "Freelance / Side Projects",
+    role: "Full-Stack Developer",
+    period: "2025 — Present",
+    points: [
+      "Developed scalable web apps using Next.js, Node.js and PostgreSQL.",
+      "Automated deployments using Docker + CI/CD pipelines.",
+    ],
+  },
+  
+  
 ];
