@@ -67,21 +67,21 @@ function SkillCard({ name, icon }: Skill) {
   const isEmoji = icon && !icon.startsWith("/");
   return (
     <div
-      className="group rounded-2xl border bg-card shadow-sm hover:shadow-md hover:border-primary/30 transition
-                 p-6 sm:p-7 flex flex-col items-center justify-center text-center min-h-[140px]"
+      className="group rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm shadow-md hover:shadow-xl hover:shadow-primary/10 hover:border-primary/50 transition-all duration-300
+                 p-6 sm:p-7 flex flex-col items-center justify-center text-center min-h-[140px] hover:scale-105 hover:-translate-y-1"
     >
       <div
-        className="grid place-items-center rounded-xl bg-muted size-14 mb-4 transition-transform
-                   group-hover:scale-105"
+        className="grid place-items-center rounded-xl bg-gradient-to-br from-primary/10 to-purple-500/10 size-16 mb-4 transition-all duration-300
+                   group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-lg group-hover:shadow-primary/20 border border-primary/20"
       >
         {isEmoji ? (
-          <span className="text-2xl">{icon}</span>
+          <span className="text-2xl group-hover:scale-110 transition-transform">{icon}</span>
         ) : (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={icon} alt={name} className="h-8 w-8 object-contain" />
+          <img src={icon} alt={name} className="h-9 w-9 object-contain group-hover:scale-110 transition-transform duration-300 filter group-hover:brightness-110" />
         )}
       </div>
-      <p className="text-sm font-medium text-foreground">{name}</p>
+      <p className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">{name}</p>
     </div>
   );
 }
