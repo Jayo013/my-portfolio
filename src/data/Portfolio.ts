@@ -5,6 +5,7 @@ export const PROFILE = {
     "I build fast, delightful web apps with React, Node.js, and cloud-native tooling.",
   location: "Sri Lanka",
   email: "pramudithakudagamage13@gmail.com",
+  contact: "+94 750 509 482",
   github: "https://github.com/yourhandle",
   linkedin: "https://www.linkedin.com/in/yourhandle/",
   resumeUrl: "/resume.pdf",
@@ -68,18 +69,21 @@ export const EDUCATION = [
     title: "BSc in Computer Science",
     institution: "University of Ruhuna",
     period: "Reading (2023 — Present)",
+    logo: "/education/ruhuna.png",
   },
   {
     id: "edu-2",
     title: "Diploma in Software Engineering",
-    institution: "NIBM",
+    institution: "National Institute of Business Management (NIBM)",
     period: "2022 — 2023",
+    logo: "/education/nibm.png",
   },
   {
     id: "edu-3",
     title: "GCE Advanced Level",
     institution: "Vidyaloka College - Galle",
     period: "Completed",
+    logo: "/education/vidyaloka.png",
   },
 ];
 
@@ -117,4 +121,34 @@ export const EXPERIENCE = [
   },
   
   
+];
+
+export const BLOG_POSTS = [
+  {
+    title: "Docker Containers: The Ultimate Guide for Beginners",
+    description: "A comprehensive guide to understanding and using Docker containers for modern application development.",
+    date: "Dec 11, 2025",
+    readTime: "8 min read",
+    link: "https://medium.com/@pramudithakudagamage13/docker-containers-the-ultimate-guide-for-beginners-abc05f3a1301",
+    image: "/projects/protfolio.png", 
+    tags: ["Docker", "DevOps", "Containers"],
+  },
+  {
+    title: "Mastering TypeScript Generics",
+    description: "Learn how to write flexible and reusable code with TypeScript generics.",
+    date: "Sep 28, 2025",
+    readTime: "6 min read",
+    link: "https://medium.com/@pramudithakudagamage13",
+    image: "/projects/protfolio.png",
+    tags: ["TypeScript", "Programming"],
+  },
+  {
+    title: "Building Scalable APIs with NestJS",
+    description: "Best practices for structuring your NestJS applications for scale and maintainability.",
+    date: "Aug 15, 2025",
+    readTime: "10 min read",
+    link: "https://medium.com/@pramudithakudagamage13",
+    image: "/projects/protfolio.png",
+    tags: ["NestJS", "Backend", "Node.js"],
+  },
 ];
