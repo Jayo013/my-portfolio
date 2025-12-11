@@ -8,10 +8,11 @@ import { useDarkMode } from "@/component/hooks/useDarkMode";
 const NAV = [
   { href: "#home", label: "Home" },
   { href: "#about", label: "About" },
-  { href: "#projects", label: "Projects" },
   { href: "#skills", label: "Skills" },
   { href: "#education", label: "Education" },
   { href: "#experience", label: "Experience" },
+  { href: "#projects", label: "Projects" },
+  { href: "#blog", label: "Blog" },
   { href: "#contact", label: "Contact" },
 ];
 
