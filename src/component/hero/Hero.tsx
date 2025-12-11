@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Download, Github, Linkedin, Mail, MapPin } from "lucide-react";
+import { Download, Github, Linkedin, Mail, MapPin, Code2, Server, Palette, Terminal, Globe, Wrench } from "lucide-react";
 import { Button } from "@/component/ui/button";
 import { PROFILE } from "@/data/Portfolio";
 import AnimatedAvatar from "@/component/hero/AnimatedAvatar";
@@ -18,12 +18,182 @@ export default function Hero() {
       className="relative overflow-hidden min-h-[92vh] flex items-center"
       aria-label="Intro section"
     >
-      {/* Radial glow background */}
-      <div
-        className="absolute inset-0 -z-10 flex items-center justify-center"
-        aria-hidden="true"
-      >
-        <div className="w-[900px] h-[900px] rounded-full bg-gradient-radial from-indigo-900/55 via-purple-800/35 to-transparent blur-3xl opacity-70" />
+      {/* Enhanced background animation */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
+        <motion.div
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.3, 0.5, 0.3],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-indigo-500/20 rounded-full blur-[120px] pointer-events-none"
+        />
+
+        {/* Enhanced background elements for large screens */}
+        <motion.div
+          animate={{
+            scale: [1, 1.5, 1],
+            opacity: [0.4, 1, 0.4],
+            x: [0, 10, -10, 0],
+            y: [0, -10, 10, 0],
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="hidden lg:block absolute top-1/4 left-1/4 w-6 h-6 bg-purple-400/60 rounded-full"
+        />
+        <motion.div
+          animate={{
+            scale: [1, 2, 1],
+            opacity: [0.5, 1, 0.5],
+            rotate: [0, 180, 360],
+          }}
+          transition={{
+            duration: 6,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1,
+          }}
+          className="hidden lg:block absolute top-3/4 right-1/4 w-5 h-5 bg-indigo-400/70 rounded-full"
+        />
+        <motion.div
+          animate={{
+            scale: [1, 1.8, 1],
+            opacity: [0.6, 1, 0.6],
+            x: [0, 15, -15, 0],
+          }}
+          transition={{
+            duration: 5,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 0.5,
+          }}
+          className="hidden lg:block absolute top-1/3 right-1/5 w-4 h-4 bg-pink-400/80 rounded-full"
+        />
+        <motion.div
+          animate={{
+            scale: [1, 1.6, 1],
+            opacity: [0.3, 0.9, 0.3],
+            y: [0, -20, 20, 0],
+          }}
+          transition={{
+            duration: 7,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 0.7,
+          }}
+          className="hidden lg:block absolute bottom-1/4 left-1/5 w-7 h-7 bg-cyan-400/50 rounded-full"
+        />
+      </div>
+
+      {/* Enhanced Floating Tech Icons for Large Screens */}
+      <div className="hidden lg:block absolute inset-0 pointer-events-none -z-10">
+        {[
+          {
+            icon: <Code2 size={40} />,
+            position: "top-1/4 left-[15%]",
+            delay: 0,
+          },
+          {
+            icon: <Server size={36} />,
+            position: "top-1/3 right-[15%]",
+            delay: 1,
+          },
+          {
+            icon: <Palette size={38} />,
+            position: "bottom-1/3 left-[10%]",
+            delay: 2,
+          },
+          {
+            icon: <Terminal size={34} />,
+            position: "bottom-1/4 right-[12%]",
+            delay: 1.5,
+          },
+          {
+            icon: <Globe size={32} />,
+            position: "top-[15%] right-1/4",
+            delay: 0.5,
+          },
+          {
+            icon: <Wrench size={30} />,
+            position: "bottom-[15%] left-1/4",
+            delay: 2.5,
+          },
+        ].map((item, idx) => (
+          <motion.div
+            key={idx}
+            initial={{ opacity: 0, scale: 0, rotate: 0 }}
+            animate={{
+              opacity: [0, 0.8, 0.4, 0.8],
+              scale: [0.6, 1.3, 0.8, 1.2],
+              rotate: [0, 20, -20, 10, -10, 0],
+              y: [0, -15, 15, -10, 0],
+              x: [0, 10, -10, 5, 0],
+            }}
+            transition={{
+              duration: 6 + idx * 0.8,
+              repeat: Infinity,
+              delay: item.delay,
+              ease: "easeInOut",
+            }}
+            className={`absolute ${item.position} text-indigo-400/50 hover:text-indigo-400/90 transition-colors duration-300`}
+          >
+            {item.icon}
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Enhanced Geometric shapes for decoration */}
+      <div className="hidden lg:block absolute inset-0 pointer-events-none -z-10">
+        <motion.div
+          animate={{
+            rotate: [0, 360],
+            scale: [1, 1.3, 0.8, 1.2, 1],
+            borderRadius: ["8px", "50%", "8px"],
+          }}
+          transition={{
+            duration: 12,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+          className="absolute top-[20%] left-[8%] w-20 h-20 border-2 border-indigo-400/30 rounded-lg"
+        />
+        <motion.div
+          animate={{
+            rotate: [360, 0],
+            scale: [1, 0.7, 1.4, 1],
+            x: [0, 20, -20, 0],
+            y: [0, -15, 15, 0],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="absolute bottom-[25%] right-[8%] w-16 h-16 border-2 border-purple-400/40 rounded-full"
+        />
+        <motion.div
+          animate={{
+            y: [0, -25, 25, 0],
+            x: [0, 15, -15, 0],
+            opacity: [0.3, 0.9, 0.3],
+            scale: [1, 1.5, 1],
+            rotate: [0, 45, -45, 0],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 0.5,
+          }}
+          className="absolute top-[30%] right-[25%] w-12 h-12 bg-gradient-to-r from-indigo-400/30 to-purple-400/30 rounded-lg"
+        />
       </div>
 
       <div className="mx-auto max-w-4xl px-4">
