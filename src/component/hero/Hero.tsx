@@ -205,9 +205,14 @@ export default function Hero() {
         {/* Name & tagline */}
         <motion.h1
           {...fadeUp(0.05)}
-          className="mt-8 text-center text-4xl sm:text-5xl font-extrabold leading-tight tracking-tight"
+          className="mt-8 text-center text-4xl sm:text-6xl font-extrabold leading-tight tracking-tight"
         >
-          {PROFILE.name}
+          <span className="block text-xl sm:text-2xl font-medium mb-2 text-muted-foreground">
+            Hello, I&apos;m
+          </span>
+          <span className="font-outfit bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 animate-gradient-x pb-2">
+            Jayoda Pramuditha
+          </span>
         </motion.h1>
 
         <motion.p
