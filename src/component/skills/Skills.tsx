@@ -103,19 +103,20 @@ export default function Skills() {
       </p>
 
       {/* Filter tabs */}
-      <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-8 sm:mb-10">
+      <div className="flex flex-wrap items-center justify-center gap-3 mb-12">
         {CATEGORIES.map((cat) => {
           const selected = cat === active;
           return (
             <button
               key={cat}
               onClick={() => setActive(cat)}
-              className={[
-                "rounded-full px-4 py-2 text-sm border transition",
-                selected
-                  ? "bg-primary text-primary-foreground border-primary"
-                  : "bg-muted text-foreground hover:bg-muted/80 border-transparent",
-              ].join(" ")}
+              className={`
+                relative px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300
+                ${selected 
+                  ? "bg-blue-600 text-white shadow-lg shadow-blue-500/25 scale-105" 
+                  : "bg-white/5 text-muted-foreground hover:bg-white/10 hover:text-white border border-white/5 hover:border-white/10"
+                }
+              `}
             >
               {cat}
             </button>
