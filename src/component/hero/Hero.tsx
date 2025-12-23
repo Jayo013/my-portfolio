@@ -210,7 +210,7 @@ export default function Hero() {
           <span className="block text-xl sm:text-2xl font-medium mb-2 text-muted-foreground">
             Hello, I&apos;m
           </span>
-          <span className="font-outfit bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 animate-gradient-x pb-2">
+          <span className="font-outfit text-gray-900 dark:bg-clip-text dark:text-transparent dark:bg-gradient-to-r dark:from-indigo-500 dark:via-purple-500 dark:to-pink-500 dark:animate-gradient-x pb-2">
             Jayoda Pramuditha
           </span>
         </motion.h1>
