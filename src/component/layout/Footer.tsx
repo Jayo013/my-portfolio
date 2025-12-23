@@ -49,20 +49,20 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative bg-[#0a0a16] border-t border-white/10 py-6 overflow-hidden">
+    <footer className="relative bg-black border-t border-white/10 py-6 overflow-hidden">
       {/* Background Gradients */}
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl -translate-y-1/2 pointer-events-none" />
       <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl translate-y-1/2 pointer-events-none" />
 
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-4 mb-6">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 mb-8">
           {/* Brand Column */}
-          <div className="lg:col-span-5 space-y-4">
+          <div className="lg:col-span-4 space-y-4">
             <div className="space-y-2">
               <Link href="/" className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400">
                 {cleanName}
               </Link>
-              <p className="text-muted-foreground max-w-md leading-relaxed text-sm">
+              <p className="text-gray-400 max-w-md leading-relaxed text-sm">
                 Crafting digital experiences with passion and precision. 
                 Specializing in modern web technologies and user-centric design.
               </p>
@@ -74,21 +74,6 @@ export default function Footer() {
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                 </span>
                 <span className="text-xs font-medium text-green-400">Available for work</span>
-              </div>
-            </div>
-
-            {/* Newsletter Widget */}
-            <div className="max-w-sm p-3 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">
-              <h4 className="text-sm font-semibold text-foreground mb-2">Stay Updated</h4>
-              <div className="flex gap-2">
-                <input 
-                  type="email" 
-                  placeholder="Enter your email" 
-                  className="bg-black/20 border border-white/10 rounded-lg px-3 py-2 text-sm w-full focus:outline-none focus:border-indigo-500/50 transition-colors text-foreground placeholder:text-muted-foreground/50"
-                />
-                <button className="p-2 rounded-lg bg-indigo-500 hover:bg-indigo-600 text-white transition-colors">
-                  <Send className="w-4 h-4" />
-                </button>
               </div>
             </div>
 
@@ -104,7 +89,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noreferrer"
                   whileHover={{ y: -3 }}
-                  className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-muted-foreground hover:text-indigo-400 hover:border-indigo-500/50 hover:bg-indigo-500/10 transition-all duration-300"
+                  className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-indigo-400 hover:border-indigo-500/50 hover:bg-indigo-500/10 transition-all duration-300"
                   aria-label={social.label}
                 >
                   <social.icon className="w-4 h-4" />
@@ -114,44 +99,61 @@ export default function Footer() {
           </div>
 
           {/* Quick Links */}
-          <div className="lg:col-span-2">
-            <h3 className="text-base font-semibold text-foreground mb-3">Quick Links</h3>
-            <ul className="space-y-1.5">
-              {FOOTER_LINKS.map((link) => (
-                <li key={link.label}>
-                  <Link 
-                    href={link.href}
-                    className="text-sm text-muted-foreground hover:text-indigo-400 transition-colors flex items-center gap-2 group"
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full bg-indigo-500/50 group-hover:bg-indigo-400 transition-colors" />
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+          <div className="lg:col-span-4 space-y-6 lg:pl-8">
+            <div>
+              <h3 className="text-base font-semibold text-white mb-3">Quick Links</h3>
+              <ul className="space-y-1.5 grid grid-cols-2 gap-x-4">
+                {FOOTER_LINKS.map((link) => (
+                  <li key={link.label}>
+                    <Link 
+                      href={link.href}
+                      className="text-sm text-gray-400 hover:text-indigo-400 transition-colors flex items-center gap-2 group"
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-indigo-500/50 group-hover:bg-indigo-400 transition-colors" />
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Newsletter Widget */}
+            <div className="max-w-sm p-4 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">
+              <h4 className="text-sm font-semibold text-white mb-2">Stay Updated</h4>
+              <div className="flex gap-2">
+                <input 
+                  type="email" 
+                  placeholder="Enter your email" 
+                  className="bg-black/20 border border-white/10 rounded-lg px-3 py-2 text-sm w-full focus:outline-none focus:border-indigo-500/50 transition-colors text-white placeholder:text-gray-500"
+                />
+                <button className="p-2 rounded-lg bg-indigo-500 hover:bg-indigo-600 text-white transition-colors">
+                  <Send className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
           </div>
 
           {/* Contact Info */}
-          <div className="lg:col-span-5">
-            <h3 className="text-base font-semibold text-foreground mb-3">Contact</h3>
+          <div className="lg:col-span-4 lg:pl-12">
+            <h3 className="text-base font-semibold text-white mb-3">Contact</h3>
             <ul className="space-y-2">
-              <li className="flex items-start gap-3 text-muted-foreground text-sm">
+              <li className="flex items-start gap-3 text-gray-400 text-sm">
                 <MapPin className="w-4 h-4 text-indigo-400 shrink-0 mt-0.5" />
                 <span>{PROFILE.location}</span>
               </li>
-              <li className="flex items-center gap-3 text-muted-foreground text-sm group">
+              <li className="flex items-center gap-3 text-gray-400 text-sm group">
                 <Mail className="w-4 h-4 text-indigo-400 shrink-0" />
-                <span className="truncate max-w-[180px]">{PROFILE.email}</span>
+                <span className="truncate max-w-[250px]">{PROFILE.email}</span>
                 <button 
                   onClick={handleCopyEmail}
-                  className="p-1.5 rounded-md bg-white/5 hover:bg-indigo-500/20 text-muted-foreground hover:text-indigo-400 transition-all opacity-0 group-hover:opacity-100"
+                  className="p-1.5 rounded-md bg-white/5 hover:bg-indigo-500/20 text-gray-400 hover:text-indigo-400 transition-all opacity-0 group-hover:opacity-100"
                   title="Copy Email"
                 >
                   {copied ? <Check className="w-3 h-3 text-green-400" /> : <Copy className="w-3 h-3" />}
                 </button>
               </li>
               {PROFILE.contact && (
-                <li className="flex items-center gap-3 text-muted-foreground text-sm">
+                <li className="flex items-center gap-3 text-gray-400 text-sm">
                   <Phone className="w-4 h-4 text-indigo-400 shrink-0" />
                   <a href={`tel:${PROFILE.contact}`} className="hover:text-indigo-400 transition-colors">
                     {PROFILE.contact}
@@ -161,10 +163,10 @@ export default function Footer() {
               
               {/* Local Time Widget */}
               <li className="pt-2 border-t border-white/5">
-                <div className="flex items-center gap-3 text-muted-foreground text-sm">
+                <div className="flex items-center gap-3 text-gray-400 text-sm">
                   <Clock className="w-4 h-4 text-indigo-400" />
                   <div className="flex flex-col">
-                    <span className="text-xs text-muted-foreground/50">Local Time</span>
+                    <span className="text-xs text-gray-500">Local Time</span>
                     <span className="font-mono text-indigo-300">{time}</span>
                   </div>
                 </div>
@@ -175,12 +177,12 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-4 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-muted-foreground text-center md:text-left">
+          <p className="text-xs text-gray-400 text-center md:text-left">
             © {year} {cleanName}. All rights reserved.
           </p>
           
           {/* Tech Stack Badges */}
-          <div className="flex items-center gap-4 text-xs text-muted-foreground hidden sm:flex">
+          <div className="flex items-center gap-4 text-xs text-gray-400 hidden sm:flex">
             <span className="flex items-center gap-1.5 hover:text-indigo-400 transition-colors cursor-help" title="Built with Next.js">
               <Code2 className="w-3.5 h-3.5" /> Next.js
             </span>
@@ -194,7 +196,7 @@ export default function Footer() {
 
           <button
             onClick={scrollToTop}
-            className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-muted-foreground hover:text-indigo-400 hover:border-indigo-500/50 hover:bg-indigo-500/10 transition-all duration-300"
+            className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-indigo-400 hover:border-indigo-500/50 hover:bg-indigo-500/10 transition-all duration-300"
             aria-label="Scroll to top"
           >
             <ArrowUp className="w-4 h-4" />
