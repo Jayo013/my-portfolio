@@ -25,7 +25,7 @@ export default function BlogPosts() {
   // Based on the image, it looks like a carousel with navigation buttons.
 
   return (
-    <section id="blog" className="py-20 relative overflow-hidden">
+    <section id="blog" className="py-20 relative overflow-hidden bg-gray-50 dark:bg-transparent">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -34,7 +34,7 @@ export default function BlogPosts() {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
             Blog Posts
           </h2>
           <div className="flex items-center justify-center gap-2 text-muted-foreground mb-8">
@@ -74,7 +74,7 @@ export default function BlogPosts() {
                     className="h-full"
                 >
                     <Link href={post.link} target="_blank" rel="noopener noreferrer" className="block h-full">
-                        <Card className="h-full overflow-hidden border-0 bg-[#11112b] text-white hover:border-indigo-500/50 border border-transparent transition-all duration-300 group flex flex-col rounded-xl min-h-[420px]">
+                        <Card className="h-full overflow-hidden border border-gray-200 dark:border-transparent bg-white dark:bg-[#11112b] text-gray-900 dark:text-white hover:border-indigo-500/50 transition-all duration-300 group flex flex-col rounded-xl min-h-[420px]">
                             <div className="relative h-64 w-full overflow-hidden">
                                 <Image
                                     src={post.image}
@@ -83,11 +83,11 @@ export default function BlogPosts() {
                                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                                 />
                                 {/* Overlay gradient */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-[#11112b] to-transparent opacity-60" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-[#11112b] to-transparent opacity-60" />
                             </div>
                             
                             <CardContent className="flex-grow p-6 pt-4">
-                                <div className="flex justify-between items-start mb-4 text-sm text-gray-400">
+                                <div className="flex justify-between items-start mb-4 text-sm text-gray-500 dark:text-gray-400">
                                     <div className="flex gap-2">
                                         <span>{post.date.split(' ')[2]}</span> {/* Year */}
                                         <span>•</span>
@@ -96,15 +96,15 @@ export default function BlogPosts() {
                                     <ExternalLink className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
                                 </div>
 
-                                <h3 className="text-xl font-bold mb-3 line-clamp-2 group-hover:text-indigo-400 transition-colors">
+                                <h3 className="text-xl font-bold mb-3 line-clamp-2 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
                                     {post.title}
                                 </h3>
                                 
-                                <p className="text-gray-400 text-sm line-clamp-3 mb-4">
+                                <p className="text-gray-600 dark:text-gray-400 text-sm line-clamp-3 mb-4">
                                     {post.description}
                                 </p>
 
-                                <div className="flex items-center text-indigo-400 text-sm font-medium mt-auto">
+                                <div className="flex items-center text-indigo-600 dark:text-indigo-400 text-sm font-medium mt-auto">
                                     Read more <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
                                 </div>
                             </CardContent>
