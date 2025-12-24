@@ -143,7 +143,7 @@
   }
   
  :root body {
-    background: linear-gradient(135deg, #050220 0%, #270433 25%, #3f0234 50%, #040426 75%, #070118 100%);
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 25%, #f1f3f5 50%, #f8f9fa 75%, #ffffff 100%);
     
     min-height: 100vh;
   }
@@ -191,10 +191,15 @@
   width: 22px;
   height: 22px;
   opacity: .35;
-  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.65), rgba(255,255,255,0));
-  border: 1px solid rgba(255,255,255,.15);
+  background: radial-gradient(circle at 30% 30%, rgba(99,102,241,.4), rgba(99,102,241,0));
+  border: 1px solid rgba(99,102,241,.2);
   box-shadow: 0 0 20px rgba(99,102,241,.25);
   animation: floatY 6s ease-in-out infinite, floatX 7.5s ease-in-out infinite;
+}
+
+.dark .float-piece {
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.65), rgba(255,255,255,0));
+  border: 1px solid rgba(255,255,255,.15);
 }
 
 .piece-square { border-radius: 8px; }
