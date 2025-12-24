@@ -12,7 +12,7 @@ export default function Education() {
     <Section id="education" title="Education">
       <div className="relative max-w-4xl mx-auto px-4">
         {/* Vertical Line */}
-        <div className="absolute left-8 md:left-1/2 h-full w-0.5 bg-gradient-to-b from-indigo-500 via-purple-500 to-transparent transform md:-translate-x-1/2" />
+        <div className="absolute left-8 md:left-1/2 h-full w-0.5 bg-gradient-to-b from-black via-gray-500 to-transparent dark:from-indigo-500 dark:via-purple-500 transform md:-translate-x-1/2" />
 
         <div className="space-y-12">
           {EDUCATION.map((edu, index) => (
@@ -27,13 +27,13 @@ export default function Education() {
               } items-start md:items-center gap-8`}
             >
               {/* Timeline Dot */}
-              <div className="absolute left-8 md:left-1/2 w-4 h-4 bg-indigo-500 rounded-full border-4 border-background transform -translate-x-1/2 z-10 shadow-[0_0_10px_rgba(99,102,241,0.5)] mt-6 md:mt-0" />
+              <div className="absolute left-8 md:left-1/2 w-4 h-4 bg-black dark:bg-indigo-500 rounded-full border-4 border-background transform -translate-x-1/2 z-10 shadow-[0_0_10px_rgba(0,0,0,0.5)] dark:shadow-[0_0_10px_rgba(99,102,241,0.5)] mt-6 md:mt-0" />
 
               {/* Content Card */}
               <div className={`w-full md:w-[calc(50%-2rem)] pl-16 md:pl-0`}>
-                <Card className="overflow-hidden border-border/50 bg-card/50 backdrop-blur-sm hover:border-indigo-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-indigo-500/10 group relative">
+                <Card className="overflow-hidden border-border/50 bg-card/50 backdrop-blur-sm hover:border-gray-500/50 dark:hover:border-indigo-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-gray-500/10 dark:hover:shadow-indigo-500/10 group relative">
                   {/* Gradient Border Effect */}
-                  <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-indigo-500 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-gray-700 to-black dark:from-indigo-500 dark:to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity" />
                   
                   <CardHeader className="pb-6">
                     <div className="flex items-center justify-between mb-4">
@@ -54,7 +54,7 @@ export default function Education() {
                         {edu.period}
                       </div>
                     </div>
-                    <CardTitle className="text-xl font-bold group-hover:text-indigo-400 transition-colors">
+                    <CardTitle className="text-xl font-bold group-hover:text-gray-700 dark:group-hover:text-indigo-400 transition-colors">
                       {edu.title}
                     </CardTitle>
                     <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground mt-1">

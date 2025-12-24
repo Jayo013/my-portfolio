@@ -25,7 +25,7 @@ export default function BlogPosts() {
   // Based on the image, it looks like a carousel with navigation buttons.
 
   return (
-    <section id="blog" className="py-20 relative overflow-hidden bg-gray-50 dark:bg-transparent">
+    <section id="blog" className="py-20 relative overflow-hidden">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -48,14 +48,14 @@ export default function BlogPosts() {
             {/* Navigation Buttons */}
             <button 
                 onClick={prevSlide}
-                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-20 z-10 p-3 rounded-full bg-indigo-600 hover:bg-indigo-700 text-white transition-colors hidden md:block"
+                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-20 z-10 p-3 rounded-full bg-black hover:bg-gray-800 dark:bg-indigo-600 dark:hover:bg-indigo-700 text-white transition-colors hidden md:block"
             >
                 <ChevronLeft className="w-6 h-6" />
             </button>
             
             <button 
                 onClick={nextSlide}
-                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-20 z-10 p-3 rounded-full bg-indigo-600 hover:bg-indigo-700 text-white transition-colors hidden md:block"
+                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-20 z-10 p-3 rounded-full bg-black hover:bg-gray-800 dark:bg-indigo-600 dark:hover:bg-indigo-700 text-white transition-colors hidden md:block"
             >
                 <ChevronRight className="w-6 h-6" />
             </button>
@@ -82,8 +82,6 @@ export default function BlogPosts() {
                                     fill
                                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                                 />
-                                {/* Overlay gradient */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-[#11112b] to-transparent opacity-60" />
                             </div>
                             
                             <CardContent className="flex-grow p-6 pt-4">
@@ -96,7 +94,7 @@ export default function BlogPosts() {
                                     <ExternalLink className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
                                 </div>
 
-                                <h3 className="text-xl font-bold mb-3 line-clamp-2 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                                <h3 className="text-xl font-bold mb-3 line-clamp-2 group-hover:text-gray-700 dark:group-hover:text-indigo-400 transition-colors">
                                     {post.title}
                                 </h3>
                                 
@@ -104,7 +102,7 @@ export default function BlogPosts() {
                                     {post.description}
                                 </p>
 
-                                <div className="flex items-center text-indigo-600 dark:text-indigo-400 text-sm font-medium mt-auto">
+                                <div className="flex items-center text-black dark:text-indigo-400 text-sm font-medium mt-auto">
                                     Read more <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
                                 </div>
                             </CardContent>
@@ -117,7 +115,7 @@ export default function BlogPosts() {
         </div>
 
         <div className="text-center mt-12">
-          <Button asChild size="lg" className="rounded-full px-8 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white border-0 shadow-lg shadow-indigo-500/25 transition-all hover:scale-105">
+          <Button asChild size="lg" className="rounded-full px-8 bg-black hover:bg-gray-800 dark:bg-gradient-to-r dark:from-violet-600 dark:to-fuchsia-600 dark:hover:from-violet-700 dark:hover:to-fuchsia-700 text-white border-0 shadow-lg shadow-gray-500/25 dark:shadow-violet-500/25 transition-all hover:scale-105">
             <Link href="https://medium.com/@pramudithakudagamage13" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3">
              <span className="bg-white text-black font-serif font-bold px-1.5 py-0.5 rounded text-sm leading-none">M</span>
                <span>View All Articles</span>

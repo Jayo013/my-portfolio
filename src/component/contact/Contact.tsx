@@ -57,7 +57,7 @@ export default function Contact() {
 
             <ul className="space-y-6">
               <li className="flex items-start gap-4">
-                <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">
+                <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-gray-800 text-white dark:bg-indigo-900/30 dark:text-indigo-300">
                   <Mail className="h-5 w-5" />
                 </span>
                 <div>
@@ -69,7 +69,7 @@ export default function Contact() {
               </li>
 
               <li className="flex items-start gap-4">
-                <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">
+                <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-gray-800 text-white dark:bg-indigo-900/30 dark:text-indigo-300">
                   <Phone className="h-5 w-5" />
                 </span>
                 <div>
@@ -79,7 +79,7 @@ export default function Contact() {
               </li>
 
               <li className="flex items-start gap-4">
-                <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">
+                <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-gray-800 text-white dark:bg-indigo-900/30 dark:text-indigo-300">
                   <MapPin className="h-5 w-5" />
                 </span>
                 <div>

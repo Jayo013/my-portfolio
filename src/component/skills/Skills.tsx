@@ -113,8 +113,8 @@ export default function Skills() {
               className={`
                 relative px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300
                 ${selected 
-                  ? "bg-blue-600 text-white shadow-lg shadow-blue-500/25 scale-105" 
-                  : "bg-white/5 text-muted-foreground hover:bg-white/10 hover:text-white border border-white/5 hover:border-white/10"
+                  ? "bg-black dark:bg-blue-600 text-white shadow-lg shadow-gray-500/25 dark:shadow-blue-500/25 scale-105" 
+                  : "bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-muted-foreground hover:bg-gray-200 dark:hover:bg-white/10 hover:text-black dark:hover:text-white border border-gray-200 dark:border-white/5"
                 }
               `}
             >
