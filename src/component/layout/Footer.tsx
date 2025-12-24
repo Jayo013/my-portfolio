@@ -49,7 +49,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative bg-black border-t border-white/10 py-6 overflow-hidden">
+    <footer className="relative bg-black dark:bg-[#0a0319] border-t border-indigo-500/20 py-8 overflow-hidden">
       {/* Background Gradients */}
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl -translate-y-1/2 pointer-events-none" />
       <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl translate-y-1/2 pointer-events-none" />
@@ -89,7 +89,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noreferrer"
                   whileHover={{ y: -3 }}
-                  className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-indigo-400 hover:border-indigo-500/50 hover:bg-indigo-500/10 transition-all duration-300"
+                  className="w-9 h-9 rounded-lg bg-indigo-950/30 border border-indigo-500/20 flex items-center justify-center text-gray-400 hover:text-indigo-400 hover:border-indigo-500/50 hover:bg-indigo-500/20 transition-all duration-300"
                   aria-label={social.label}
                 >
                   <social.icon className="w-4 h-4" />
@@ -118,13 +118,13 @@ export default function Footer() {
             </div>
 
             {/* Newsletter Widget */}
-            <div className="max-w-sm p-4 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">
+            <div className="max-w-sm p-4 rounded-xl bg-indigo-950/30 border border-indigo-500/20 backdrop-blur-sm">
               <h4 className="text-sm font-semibold text-white mb-2">Stay Updated</h4>
               <div className="flex gap-2">
                 <input 
                   type="email" 
                   placeholder="Enter your email" 
-                  className="bg-black/20 border border-white/10 rounded-lg px-3 py-2 text-sm w-full focus:outline-none focus:border-indigo-500/50 transition-colors text-white placeholder:text-gray-500"
+                  className="bg-black/40 border border-indigo-500/20 rounded-lg px-3 py-2 text-sm w-full focus:outline-none focus:border-indigo-500/50 transition-colors text-white placeholder:text-gray-500"
                 />
                 <button className="p-2 rounded-lg bg-indigo-500 hover:bg-indigo-600 text-white transition-colors">
                   <Send className="w-4 h-4" />
@@ -146,7 +146,7 @@ export default function Footer() {
                 <span className="truncate max-w-[250px]">{PROFILE.email}</span>
                 <button 
                   onClick={handleCopyEmail}
-                  className="p-1.5 rounded-md bg-white/5 hover:bg-indigo-500/20 text-gray-400 hover:text-indigo-400 transition-all opacity-0 group-hover:opacity-100"
+                  className="p-1.5 rounded-md bg-indigo-500/10 hover:bg-indigo-500/20 text-gray-400 hover:text-indigo-400 transition-all opacity-0 group-hover:opacity-100"
                   title="Copy Email"
                 >
                   {copied ? <Check className="w-3 h-3 text-green-400" /> : <Copy className="w-3 h-3" />}
@@ -162,7 +162,7 @@ export default function Footer() {
               )}
               
               {/* Local Time Widget */}
-              <li className="pt-2 border-t border-white/5">
+              <li className="pt-2 border-t border-indigo-500/10">
                 <div className="flex items-center gap-3 text-gray-400 text-sm">
                   <Clock className="w-4 h-4 text-indigo-400" />
                   <div className="flex flex-col">
@@ -176,7 +176,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-4 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="pt-4 border-t border-indigo-500/20 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-xs text-gray-400 text-center md:text-left">
             © {year} {cleanName}. All rights reserved.
           </p>
@@ -196,7 +196,7 @@ export default function Footer() {
 
           <button
             onClick={scrollToTop}
-            className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-indigo-400 hover:border-indigo-500/50 hover:bg-indigo-500/10 transition-all duration-300"
+            className="w-8 h-8 rounded-full bg-indigo-950/30 border border-indigo-500/20 flex items-center justify-center text-gray-400 hover:text-indigo-400 hover:border-indigo-500/50 hover:bg-indigo-500/20 transition-all duration-300"
             aria-label="Scroll to top"
           >
             <ArrowUp className="w-4 h-4" />
