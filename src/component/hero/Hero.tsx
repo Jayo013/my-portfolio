@@ -18,79 +18,8 @@ export default function Hero() {
       className="relative overflow-hidden min-h-[92vh] flex items-center"
       aria-label="Intro section"
     >
-      {/* Enhanced background animation */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
-        <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-indigo-500/20 rounded-full blur-[120px] pointer-events-none"
-        />
+      {/* Background handled globally */}
 
-        {/* Enhanced background elements for large screens */}
-        <motion.div
-          animate={{
-            scale: [1, 1.5, 1],
-            opacity: [0.4, 1, 0.4],
-            x: [0, 10, -10, 0],
-            y: [0, -10, 10, 0],
-          }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="hidden lg:block absolute top-1/4 left-1/4 w-6 h-6 bg-purple-400/60 rounded-full"
-        />
-        <motion.div
-          animate={{
-            scale: [1, 2, 1],
-            opacity: [0.5, 1, 0.5],
-            rotate: [0, 180, 360],
-          }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1,
-          }}
-          className="hidden lg:block absolute top-3/4 right-1/4 w-5 h-5 bg-indigo-400/70 rounded-full"
-        />
-        <motion.div
-          animate={{
-            scale: [1, 1.8, 1],
-            opacity: [0.6, 1, 0.6],
-            x: [0, 15, -15, 0],
-          }}
-          transition={{
-            duration: 5,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 0.5,
-          }}
-          className="hidden lg:block absolute top-1/3 right-1/5 w-4 h-4 bg-pink-400/80 rounded-full"
-        />
-        <motion.div
-          animate={{
-            scale: [1, 1.6, 1],
-            opacity: [0.3, 0.9, 0.3],
-            y: [0, -20, 20, 0],
-          }}
-          transition={{
-            duration: 7,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 0.7,
-          }}
-          className="hidden lg:block absolute bottom-1/4 left-1/5 w-7 h-7 bg-cyan-400/50 rounded-full"
-        />
-      </div>
 
       {/* Enhanced Floating Tech Icons for Large Screens */}
       <div className="hidden lg:block absolute inset-0 pointer-events-none -z-10">
@@ -142,7 +71,7 @@ export default function Hero() {
               delay: item.delay,
               ease: "easeInOut",
             }}
-            className={`absolute ${item.position} text-indigo-400/50 hover:text-indigo-400/90 transition-colors duration-300`}
+            className={`absolute ${item.position} text-indigo-600/50 dark:text-indigo-400/50 hover:text-indigo-600/90 dark:hover:text-indigo-400/90 transition-colors duration-300`}
           >
             {item.icon}
           </motion.div>
@@ -150,7 +79,7 @@ export default function Hero() {
       </div>
 
       {/* Enhanced Geometric shapes for decoration */}
-      <div className="hidden lg:block absolute inset-0 pointer-events-none -z-10">
+      <div className="absolute inset-0 pointer-events-none -z-10">
         <motion.div
           animate={{
             rotate: [0, 360],
@@ -162,7 +91,7 @@ export default function Hero() {
             repeat: Infinity,
             ease: "linear",
           }}
-          className="absolute top-[20%] left-[8%] w-20 h-20 border-2 border-indigo-400/30 rounded-lg"
+          className="absolute top-[20%] left-[8%] w-20 h-20 border-2 border-indigo-600 dark:border-indigo-400/30 rounded-lg"
         />
         <motion.div
           animate={{
@@ -176,7 +105,7 @@ export default function Hero() {
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute bottom-[25%] right-[8%] w-16 h-16 border-2 border-purple-400/40 rounded-full"
+          className="absolute bottom-[25%] right-[8%] w-16 h-16 border-2 border-purple-600 dark:border-purple-400/40 rounded-full"
         />
         <motion.div
           animate={{
@@ -192,7 +121,7 @@ export default function Hero() {
             ease: "easeInOut",
             delay: 0.5,
           }}
-          className="absolute top-[30%] right-[25%] w-12 h-12 bg-gradient-to-r from-indigo-400/30 to-purple-400/30 rounded-lg"
+          className="absolute top-[30%] right-[25%] w-12 h-12 bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400/30 dark:to-purple-400/30 rounded-lg"
         />
       </div>
 
