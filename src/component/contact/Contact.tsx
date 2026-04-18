@@ -206,7 +206,7 @@ export default function Contact() {
               </Button>
 
               <p className="text-xs text-muted-foreground">
-                This form posts to <code>/api/contact</code>. Make sure your SMTP env vars are set.
+                {/*This form posts to <code>/api/contact</code>. Make sure your SMTP env vars are set.*/}
               </p>
             </form>
           </CardContent>
