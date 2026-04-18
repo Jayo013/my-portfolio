@@ -1,23 +1,66 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/component/ui/card";
+import { Card, CardContent } from "@/component/ui/card";
 import { Button } from "@/component/ui/button";
-import { ExternalLink, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { BLOG_POSTS } from "@/data/Portfolio";
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+
+type BlogPost = {
+  title: string;
+  description: string;
+  date: string;
+  readTime?: string;
+  link: string;
+  image: string;
+  tags?: string[];
+};
 
 export default function BlogPosts() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [posts, setPosts] = useState<BlogPost[]>(BLOG_POSTS);
+
+  useEffect(() => {
+    let ignore = false;
+
+    async function loadPosts() {
+      try {
+        const response = await fetch("/api/blog-posts");
+        if (!response.ok) return;
+
+        const data = await response.json();
+        if (!ignore && data?.ok && Array.isArray(data.posts) && data.posts.length > 0) {
+          setPosts(data.posts);
+          setCurrentIndex(0);
+        }
+      } catch {
+        // Keep static fallback posts when auto-fetch fails.
+      }
+    }
+
+    loadPosts();
+
+    return () => {
+      ignore = true;
+    };
+  }, []);
+
+  const visiblePosts = useMemo(() => {
+    if (posts.length === 0) return [];
+    return [0, 1, 2].map((offset) => posts[(currentIndex + offset) % posts.length]);
+  }, [currentIndex, posts]);
 
   const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % BLOG_POSTS.length);
+    if (posts.length === 0) return;
+    setCurrentIndex((prev) => (prev + 1) % posts.length);
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + BLOG_POSTS.length) % BLOG_POSTS.length);
+    if (posts.length === 0) return;
+    setCurrentIndex((prev) => (prev - 1 + posts.length) % posts.length);
   };
 
   // For mobile/tablet, we might want to show 1 card. For desktop, maybe 2 or 3.
@@ -62,12 +105,10 @@ export default function BlogPosts() {
             </button>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-            {[0, 1, 2].map((offset) => {
-                const index = (currentIndex + offset) % BLOG_POSTS.length;
-                const post = BLOG_POSTS[index];
+            {visiblePosts.map((post, offset) => {
                 return (
                 <motion.div
-                    key={`${index}-${offset}`}
+                key={`${post.link}-${offset}`}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4, delay: offset * 0.1 }}
@@ -76,12 +117,21 @@ export default function BlogPosts() {
                     <Link href={post.link} target="_blank" rel="noopener noreferrer" className="block h-full group">
                         <Card className="h-full overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-white dark:bg-[#11112b] flex flex-col rounded-2xl">
                             <div className="relative h-56 w-full overflow-hidden">
-                                <Image
+                                {post.image.startsWith("http") ? (
+                                  <img
                                     src={post.image}
                                     alt={post.title}
-                                    fill
-                                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                                />
+                                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                    loading="lazy"
+                                  />
+                                ) : (
+                                  <Image
+                                      src={post.image}
+                                      alt={post.title}
+                                      fill
+                                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                  />
+                                )}
                                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
                             </div>
                             
