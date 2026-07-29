@@ -1,15 +1,21 @@
 "use client";
 import { useEffect, useState } from "react";
 
-export function useDarkMode(defaultOn = true) {
-  const [dark, setDark] = useState<boolean>(defaultOn);
+const STORAGE_KEY = "theme";
+
+export function useDarkMode() {
+  const [dark, setDark] = useState(true);
+
+  // Sync with whatever layout.tsx's pre-hydration script already applied to <html>,
+  // instead of recomputing independently (that mismatch was the source of the theme-flash bug).
   useEffect(() => {
-    const stored = localStorage.getItem("prefers-dark");
-    setDark(stored ? stored === "true" : defaultOn);
-  }, [defaultOn]);
+    setDark(document.documentElement.classList.contains("dark"));
+  }, []);
+
   useEffect(() => {
     document.documentElement.classList.toggle("dark", dark);
-    localStorage.setItem("prefers-dark", String(dark));
+    localStorage.setItem(STORAGE_KEY, dark ? "dark" : "light");
   }, [dark]);
+
   return { dark, setDark };
 }

@@ -4,12 +4,16 @@
 import Link from "next/link";
 import { Github, Linkedin, Mail, Phone, MapPin, Heart } from "lucide-react";
 import { PROFILE } from "@/data/Portfolio";
+import Reveal from "@/component/shared/Reveal";
 
 const FOOTER_LINKS = [
   { href: "#home", label: "Home" },
   { href: "#projects", label: "Projects" },
   { href: "#about", label: "About" },
   { href: "#skills", label: "Skills" },
+  { href: "#experience", label: "Experience" },
+  { href: "#education", label: "Education" },
+  { href: "#articles", label: "Articles" },
   { href: "#contact", label: "Contact" },
 ];
 
@@ -17,12 +21,12 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-background dark:bg-[#0a0a1a] border-t border-border text-foreground">
+    <footer className="border-t border-primary/20 bg-background/40 backdrop-blur-xl text-foreground">
       <div className="mx-auto max-w-6xl px-4 py-5">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+        <Reveal className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3" y={16}>
           {/* Brand + Blurb + Socials */}
           <div>
-            <h3 className="text-2xl font-semibold">Portfolio</h3>
+            <h3 className="font-display text-2xl font-semibold text-glow">Portfolio</h3>
             <p className="mt-4 text-muted-foreground leading-relaxed">
               Creating elegant digital experiences with a focus on user-centered design and maintainable
               code. Let’s build something beautiful together.
@@ -32,7 +36,7 @@ export default function Footer() {
                 href={PROFILE.github}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-muted hover:bg-primary/80 transition"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-primary/25 bg-white/5 backdrop-blur-md transition hover:border-neon-cyan/50 hover:text-neon-cyan hover:shadow-[0_0_14px_rgba(var(--glow-cyan-rgb),0.3)]"
               >
                 <Github className="h-5 w-5" />
               </a>
@@ -40,13 +44,13 @@ export default function Footer() {
                 href={PROFILE.linkedin}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-muted hover:bg-primary/80 transition"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-primary/25 bg-white/5 backdrop-blur-md transition hover:border-neon-cyan/50 hover:text-neon-cyan hover:shadow-[0_0_14px_rgba(var(--glow-cyan-rgb),0.3)]"
               >
                 <Linkedin className="h-5 w-5" />
               </a>
               <a
                 href={`mailto:${PROFILE.email}`}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-muted hover:bg-primary/80 transition"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-primary/25 bg-white/5 backdrop-blur-md transition hover:border-neon-cyan/50 hover:text-neon-cyan hover:shadow-[0_0_14px_rgba(var(--glow-cyan-rgb),0.3)]"
               >
                 <Mail className="h-5 w-5" />
               </a>
@@ -56,7 +60,7 @@ export default function Footer() {
           {/* Quick Links */}
           <div>
             <h4 className="text-xl font-semibold">Quick Links</h4>
-            <ul className="mt-4 space-y-3">
+            <ul className="mt-4 grid grid-cols-2 gap-x-6 gap-y-3">
               {FOOTER_LINKS.map((link) => (
                 <li key={link.label}>
                   <Link
@@ -84,21 +88,22 @@ export default function Footer() {
                   {PROFILE.email}
                 </a>
               </li>
-              {/* If you have phone in your data, use it; else remove */}
               <li className="flex items-center gap-2 text-foreground/80">
                 <Phone className="h-5 w-5" />
-                <span>+94 768 324 613</span>
+                <a href={`tel:${PROFILE.phone.replace(/\s+/g, "")}`} className="hover:underline">
+                  {PROFILE.phone}
+                </a>
               </li>
             </ul>
           </div>
-        </div>
+        </Reveal>
 
         {/* Divider */}
         <div className="my-8 h-px w-full bg-border" />
 
         {/* Bottom bar */}
         <div className="flex flex-col-reverse gap-4 sm:flex-row items-center justify-between text-sm text-muted-foreground">
-          <p>© {year} {PROFILE.name.replace(/^I'm\s*/, "")}. All rights reserved.</p>
+          <p>© {year} {PROFILE.name}. All rights reserved.</p>
           <p className="inline-flex items-center gap-1">
             Made with <Heart className="h-4 w-4 text-pink-500" /> using React & Tailwind
           </p>
