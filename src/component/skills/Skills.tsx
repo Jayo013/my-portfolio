@@ -108,9 +108,9 @@ const SKILLS: Skill[] = [
   // Tools
   { name: "Git", icon: TbBrandGit, category: "Tools", tier: "Advanced" },
   { name: "GitHub", icon: TbBrandGithub, category: "Tools", tier: "Proficient" },
-  { name: "VS Code", icon: TbBrandVscode, category: "Tools", tier: "Familiar" },
+  { name: "VS Code", icon: TbBrandVscode, category: "Tools", tier: "Proficient" },
   { name: "Figma", icon: TbBrandFigma, category: "Tools", tier: "Familiar" },
-  { name: "Postman", icon: SiPostman, category: "Tools", tier: "Familiar" },
+  { name: "Postman", icon: SiPostman, category: "Tools", tier: "Proficient" },
   { name: "Vite", icon: TbBrandVite, category: "Tools", tier: "Familiar" },
   { name: "IntelliJ IDEA", icon: SiIntellijidea, category: "Tools", tier: "Familiar" },
 ];

@@ -57,6 +57,14 @@ export const PROJECTS: Project[] = [
     image: "/projects/summaraize.png",
   },
   {
+    title: "AuthCraft — Secure Authentication System",
+    blurb:
+      "A secure, easy-to-integrate authentication system for web applications, with password hashing, JWT/session-based login, protected routes, and token refresh & logout support — built with modern security best practices.",
+    tech: ["Node.js", "Express.js", "JWT", "bcrypt", "MongoDB"],
+    links: { github: "https://github.com/Jayo013/AuthCraft" },
+    image: "/projects/authcraft.png",
+  },
+  {
     title: "Sentiment Analysis on Customer Reviews",
     blurb:
       "Logistic regression model classifying customer reviews as positive or negative, using NLTK for text preprocessing, deployed as a live REST endpoint via Flask on Azure Web Services.",
