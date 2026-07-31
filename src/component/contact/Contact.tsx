@@ -2,37 +2,63 @@
 
 import { useState } from "react";
 import Section from "@/component/shared/Section";
+import Reveal from "@/component/shared/Reveal";
+import MagneticButton from "@/component/shared/MagneticButton";
 import { Card, CardContent } from "@/component/ui/card";
 import { Button } from "@/component/ui/button";
-import { Github, Linkedin, Mail, Phone, MapPin, Send, CheckCircle2, AlertTriangle } from "lucide-react";
+import { Github, Linkedin, Mail, Phone, MapPin, Send, CheckCircle2, AlertTriangle, Loader2 } from "lucide-react";
 import { PROFILE } from "@/data/Portfolio";
+import { contactSchema } from "@/lib/contact-schema";
 
-const PHONE = "+94 750 509 482";
+type FieldErrors = Partial<Record<"name" | "email" | "message", string>>;
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "", hp: "" }); // hp = honeypot
+  const [errors, setErrors] = useState<FieldErrors>({});
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState<null | "ok" | "error">(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setStatus(null);
+    setErrorMessage(null);
 
     // simple honeypot
     if (form.hp) return;
+
+    const result = contactSchema.safeParse(form);
+    if (!result.success) {
+      const fieldErrors: FieldErrors = {};
+      for (const issue of result.error.issues) {
+        const key = issue.path[0] as keyof FieldErrors;
+        if (!fieldErrors[key]) fieldErrors[key] = issue.message;
+      }
+      setErrors(fieldErrors);
+      return;
+    }
+    setErrors({});
 
     setLoading(true);
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: form.name, email: form.email, message: form.message }),
+        body: JSON.stringify(result.data),
       });
 
       if (res.ok) {
         setForm({ name: "", email: "", message: "", hp: "" });
         setStatus("ok");
       } else {
+        const body = await res.json().catch(() => null);
+        setErrorMessage(
+          res.status === 429
+            ? "Too many messages sent recently. Please try again in a few minutes."
+            : body?.error === "MISSING_FIELDS" || body?.error === "INVALID_INPUT"
+              ? "Please check the form for errors and try again."
+              : null
+        );
         setStatus("error");
       }
     } catch {
@@ -43,21 +69,21 @@ export default function Contact() {
   }
 
   return (
-    <Section id="contact" title={<span className="block text-center">Get in Touch</span>}>
-      <p className="text-center text-sm sm:text-base text-muted-foreground -mt-3 mb-8">
+    <Section id="contact" title={<span className="block text-center">Establish Connection</span>}>
+      <p className="text-center text-sm sm:text-base text-muted-foreground -mt--4 mb-8">
         Have a project in mind or want to discuss potential opportunities? I’d love to hear from you.
         Fill out the form below and I’ll get back to you as soon as possible.
       </p>
 
       <div className="grid gap-8 sm:gap-10 sm:grid-cols-2 items-start">
         {/* LEFT: Contact info + availability */}
-        <div className="space-y-8">
+        <Reveal className="space-y-8">
           <div>
             <h3 className="text-xl font-semibold mb-4">Contact Information</h3>
 
             <ul className="space-y-6">
               <li className="flex items-start gap-4">
-                <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-gray-800 text-white dark:bg-indigo-900/30 dark:text-indigo-300">
+                <span className="glow-cyan inline-flex h-11 w-11 items-center justify-center rounded-full border border-neon-cyan/40 bg-white/5 text-neon-cyan">
                   <Mail className="h-5 w-5" />
                 </span>
                 <div>
@@ -69,17 +95,19 @@ export default function Contact() {
               </li>
 
               <li className="flex items-start gap-4">
-                <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-gray-800 text-white dark:bg-indigo-900/30 dark:text-indigo-300">
+                <span className="glow-cyan inline-flex h-11 w-11 items-center justify-center rounded-full border border-neon-cyan/40 bg-white/5 text-neon-cyan">
                   <Phone className="h-5 w-5" />
                 </span>
                 <div>
                   <p className="font-medium">Phone</p>
-                  <p className="text-muted-foreground">{PHONE}</p>
+                  <a href={`tel:${PROFILE.phone.replace(/\s+/g, "")}`} className="text-muted-foreground hover:underline">
+                    {PROFILE.phone}
+                  </a>
                 </div>
               </li>
 
               <li className="flex items-start gap-4">
-                <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-gray-800 text-white dark:bg-indigo-900/30 dark:text-indigo-300">
+                <span className="glow-cyan inline-flex h-11 w-11 items-center justify-center rounded-full border border-neon-cyan/40 bg-white/5 text-neon-cyan">
                   <MapPin className="h-5 w-5" />
                 </span>
                 <div>
@@ -124,24 +152,27 @@ export default function Contact() {
               </div>
             </CardContent>
           </Card>
-        </div>
+        </Reveal>
 
         {/* RIGHT: Form */}
+        <Reveal delay={0.1}>
         <Card className="shadow-md">
           <CardContent className="p-5 sm:p-6">
             <h3 className="text-xl font-semibold mb-5">Send a Message</h3>
 
-            {/* Success / Error banners */}
+            {/* Success / Error banners — terminal-style status lines */}
             {status === "ok" && (
-              <div className="mb-4 flex items-center gap-2 rounded-md border border-green-600/30 bg-green-600/10 px-3 py-2 text-green-500">
-                <CheckCircle2 className="h-4 w-4" />
-                <p className="text-sm">Message sent! Please check your inbox for a confirmation.</p>
+              <div className="mb-4 flex items-center gap-2 rounded-md border border-neon-cyan/30 bg-neon-cyan/10 px-3 py-2 font-mono text-neon-cyan">
+                <CheckCircle2 className="h-4 w-4 shrink-0" />
+                <p className="text-sm">&gt; TRANSMISSION SENT — check your inbox for confirmation.</p>
               </div>
             )}
             {status === "error" && (
-              <div className="mb-4 flex items-center gap-2 rounded-md border border-red-600/30 bg-red-600/10 px-3 py-2 text-red-500">
-                <AlertTriangle className="h-4 w-4" />
-                <p className="text-sm">Something went wrong. Please try again later.</p>
+              <div className="mb-4 flex items-center gap-2 rounded-md border border-red-600/30 bg-red-600/10 px-3 py-2 font-mono text-red-400">
+                <AlertTriangle className="h-4 w-4 shrink-0" />
+                <p className="text-sm">
+                  &gt; ERROR: TRANSMISSION FAILED — {errorMessage || "please try again later."}
+                </p>
               </div>
             )}
 
@@ -162,12 +193,19 @@ export default function Contact() {
                 </label>
                 <input
                   id="name"
-                  className="h-10 rounded-md border bg-background px-3"
+                  className="h-10 rounded-md border border-primary/25 bg-white/5 px-3 backdrop-blur-md transition focus:border-neon-cyan/60 focus:shadow-[0_0_14px_rgba(var(--glow-cyan-rgb),0.3)] focus:outline-none"
                   placeholder="John Doe"
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
+                  aria-invalid={!!errors.name}
+                  aria-describedby={errors.name ? "name-error" : undefined}
                   required
                 />
+                {errors.name && (
+                  <p id="name-error" className="text-xs text-red-500">
+                    {errors.name}
+                  </p>
+                )}
               </div>
 
               <div className="grid gap-2">
@@ -177,12 +215,19 @@ export default function Contact() {
                 <input
                   id="email"
                   type="email"
-                  className="h-10 rounded-md border bg-background px-3"
+                  className="h-10 rounded-md border border-primary/25 bg-white/5 px-3 backdrop-blur-md transition focus:border-neon-cyan/60 focus:shadow-[0_0_14px_rgba(var(--glow-cyan-rgb),0.3)] focus:outline-none"
                   placeholder="john@example.com"
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
+                  aria-invalid={!!errors.email}
+                  aria-describedby={errors.email ? "email-error" : undefined}
                   required
                 />
+                {errors.email && (
+                  <p id="email-error" className="text-xs text-red-500">
+                    {errors.email}
+                  </p>
+                )}
               </div>
 
               <div className="grid gap-2">
@@ -192,25 +237,40 @@ export default function Contact() {
                 <textarea
                   id="msg"
                   rows={6}
-                  className="rounded-md border bg-background px-3 py-2"
+                  className="rounded-md border border-primary/25 bg-white/5 px-3 py-2 backdrop-blur-md transition focus:border-neon-cyan/60 focus:shadow-[0_0_14px_rgba(var(--glow-cyan-rgb),0.3)] focus:outline-none"
                   placeholder="Tell me about your project or inquiry…"
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
+                  aria-invalid={!!errors.message}
+                  aria-describedby={errors.message ? "message-error" : undefined}
                   required
                 />
+                {errors.message && (
+                  <p id="message-error" className="text-xs text-red-500">
+                    {errors.message}
+                  </p>
+                )}
               </div>
 
-              <Button type="submit" className="w-full gap-2" disabled={loading}>
-                <Send className="h-4 w-4" />
-                {loading ? "Sending..." : "Send Message"}
-              </Button>
-
-              <p className="text-xs text-muted-foreground">
-                {/*This form posts to <code>/api/contact</code>. Make sure your SMTP env vars are set.*/}
-              </p>
+              <MagneticButton className="block w-full" radius={40} strength={0.2}>
+                <Button type="submit" className="w-full gap-2" disabled={loading}>
+                  {loading ? (
+                    <>
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                      Transmitting...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="h-4 w-4" />
+                      Send Message
+                    </>
+                  )}
+                </Button>
+              </MagneticButton>
             </form>
           </CardContent>
         </Card>
+        </Reveal>
       </div>
     </Section>
   );

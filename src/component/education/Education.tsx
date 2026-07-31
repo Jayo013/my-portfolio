@@ -1,73 +1,51 @@
-"use client";
-
-import { motion } from "framer-motion";
+import { GraduationCap } from "lucide-react";
 import Section from "@/component/shared/Section";
-import { Card, CardHeader, CardTitle } from "@/component/ui/card";
+import Reveal from "@/component/shared/Reveal";
 import { EDUCATION } from "@/data/Portfolio";
-import { GraduationCap, Calendar, Building2 } from "lucide-react";
-import Image from "next/image";
 
 export default function Education() {
   return (
     <Section id="education" title="Education">
-      <div className="relative max-w-4xl mx-auto px-4">
-        {/* Vertical Line */}
-        <div className="absolute left-8 md:left-1/2 h-full w-0.5 bg-gradient-to-b from-black via-gray-500 to-transparent dark:from-indigo-500 dark:via-purple-500 transform md:-translate-x-1/2" />
+      <div className="relative mx-auto max-w-3xl">
+        {/* Connecting line */}
+        <div
+          aria-hidden
+          className="absolute left-6 top-2 bottom-2 w-px bg-gradient-to-b from-neon-cyan via-primary/40 to-transparent shadow-[0_0_8px_rgba(var(--glow-cyan-rgb),0.5)] sm:left-7"
+        />
 
-        <div className="space-y-12">
-          {EDUCATION.map((edu, index) => (
-            <motion.div
-              key={edu.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.2 }}
-              className={`relative flex flex-col md:flex-row ${
-                index % 2 === 0 ? "md:flex-row-reverse" : ""
-              } items-start md:items-center gap-8`}
-            >
-              {/* Timeline Dot */}
-              <div className="absolute left-8 md:left-1/2 w-4 h-4 bg-black dark:bg-indigo-500 rounded-full border-4 border-background transform -translate-x-1/2 z-10 shadow-[0_0_10px_rgba(0,0,0,0.5)] dark:shadow-[0_0_10px_rgba(99,102,241,0.5)] mt-6 md:mt-0" />
+        <div className="space-y-8">
+          {EDUCATION.map((entry,  i) => (
+            <Reveal key={entry.id} delay={i * 0.1}>
+              <div className="relative flex gap-5 sm:gap-6">
+                {/* Icon node */}
+                <div className="glow-cyan relative z-10 flex size-12 shrink-0 items-center justify-center rounded-full border border-neon-cyan/40 bg-card sm:size-14">
+                  <GraduationCap className="size-5 text-neon-cyan sm:size-6" />
+                </div>
 
-              {/* Content Card */}
-              <div className={`w-full md:w-[calc(50%-2rem)] pl-16 md:pl-0`}>
-                <Card className="overflow-hidden border-border/50 bg-card/50 backdrop-blur-sm hover:border-gray-500/50 dark:hover:border-indigo-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-gray-500/10 dark:hover:shadow-indigo-500/10 group relative">
-                  {/* Gradient Border Effect */}
-                  <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-gray-700 to-black dark:from-indigo-500 dark:to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  
-                  <CardHeader className="pb-6">
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="relative w-12 h-12 rounded-xl bg-white/10 p-2 flex items-center justify-center overflow-hidden group-hover:bg-white/20 transition-colors">
-                        {edu.logo ? (
-                          <Image 
-                            src={edu.logo} 
-                            alt={edu.institution} 
-                            fill 
-                            className="object-contain p-1"
-                          />
-                        ) : (
-                          <GraduationCap className="w-6 h-6 text-indigo-400" />
-                        )}
-                      </div>
-                      <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground bg-secondary/50 px-3 py-1 rounded-full border border-border/50">
-                        <Calendar className="w-3 h-3" />
-                        {edu.period}
-                      </div>
-                    </div>
-                    <CardTitle className="text-xl font-bold group-hover:text-gray-700 dark:group-hover:text-indigo-400 transition-colors">
-                      {edu.title}
-                    </CardTitle>
-                    <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground mt-1">
-                      <Building2 className="w-4 h-4" />
-                      {edu.institution}
-                    </div>
-                  </CardHeader>
-                </Card>
+                {/* Card */}
+                <div className="glass-panel hover-lift group flex-1 rounded-2xl border border-primary/25 p-5 sm:p-6">
+                  <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
+                    <h3 className="font-semibold leading-snug">
+                      {entry.credential}
+                    </h3>
+                    <span className="shrink-0 rounded-full border border-primary/25 bg-white/5 px-3 py-1 text-xs font-medium text-muted-foreground sm:ml-4">
+                      {entry.period}
+                    </span>
+                  </div>
+                  <p className="mt-1 text-sm font-medium text-primary">
+                    {entry.institution}
+                  </p>
+
+                  {entry.details.length > 0 && (
+                    <ul className="mt-3 list-disc space-y-2 pl-5 text-sm text-muted-foreground">
+                      {entry.details.map((d) => (
+                        <li key={d}>{d}</li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
               </div>
-              
-              {/* Empty div for spacing on the other side for desktop */}
-              <div className="hidden md:block w-[calc(50%-2rem)]" />
-            </motion.div>
+            </Reveal>
           ))}
         </div>
       </div>

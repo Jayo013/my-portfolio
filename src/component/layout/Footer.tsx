@@ -5,15 +5,16 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Github, Linkedin, Mail, Phone, MapPin, Heart, ArrowUp, Copy, Check, Send, Clock, Code2, Palette, Cpu } from "lucide-react";
 import { PROFILE } from "@/data/Portfolio";
-import { useState, useEffect } from "react";
+import Reveal from "@/component/shared/Reveal";
 
 const FOOTER_LINKS = [
   { href: "#home", label: "Home" },
   { href: "#about", label: "About" },
   { href: "#projects", label: "Projects" },
   { href: "#skills", label: "Skills" },
+  { href: "#experience", label: "Experience" },
   { href: "#education", label: "Education" },
-  { href: "#blog", label: "Blog" },
+  { href: "#articles", label: "Articles" },
   { href: "#contact", label: "Contact" },
 ];
 
@@ -49,88 +50,57 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative bg-black dark:bg-[#0a0319] border-t border-indigo-500/20 py-8 overflow-hidden">
-      {/* Background Gradients */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl -translate-y-1/2 pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl translate-y-1/2 pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 mb-8">
-          {/* Brand Column */}
-          <div className="lg:col-span-4 space-y-4">
-            <div className="space-y-2">
-              <Link href="/" className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400">
-                {cleanName}
-              </Link>
-              <p className="text-gray-400 max-w-md leading-relaxed text-sm">
-                Crafting digital experiences with passion and precision. 
-                Specializing in modern web technologies and user-centric design.
-              </p>
-              
-              {/* Status Indicator */}
-              <div className="flex items-center gap-2 px-2.5 py-1 rounded-full bg-green-500/10 border border-green-500/20 w-fit">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-                </span>
-                <span className="text-xs font-medium text-green-400">Available for work</span>
-              </div>
-            </div>
-
-            <div className="flex gap-3">
-              {[
-                { icon: Github, href: PROFILE.github, label: "GitHub" },
-                { icon: Linkedin, href: PROFILE.linkedin, label: "LinkedIn" },
-                { icon: Mail, href: `mailto:${PROFILE.email}`, label: "Email" }
-              ].map((social, index) => (
-                <motion.a
-                  key={index}
-                  href={social.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  whileHover={{ y: -3 }}
-                  className="w-9 h-9 rounded-lg bg-indigo-950/30 border border-indigo-500/20 flex items-center justify-center text-gray-400 hover:text-indigo-400 hover:border-indigo-500/50 hover:bg-indigo-500/20 transition-all duration-300"
-                  aria-label={social.label}
-                >
-                  <social.icon className="w-4 h-4" />
-                </motion.a>
-              ))}
+    <footer className="border-t border-primary/20 bg-background/40 backdrop-blur-xl text-foreground">
+      <div className="mx-auto max-w-6xl px-4 py-5">
+        <Reveal className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3" y={16}>
+          {/* Brand + Blurb + Socials */}
+          <div>
+            <h3 className="font-display text-2xl font-semibold text-glow">Portfolio</h3>
+            <p className="mt-4 text-muted-foreground leading-relaxed">
+              Creating elegant digital experiences with a focus on user-centered design and maintainable
+              code. Let’s build something beautiful together.
+            </p>
+            <div className="mt-6 flex gap-4">
+              <a
+                href={PROFILE.github}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-primary/25 bg-white/5 backdrop-blur-md transition hover:border-neon-cyan/50 hover:text-neon-cyan hover:shadow-[0_0_14px_rgba(var(--glow-cyan-rgb),0.3)]"
+              >
+                <Github className="h-5 w-5" />
+              </a>
+              <a
+                href={PROFILE.linkedin}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-primary/25 bg-white/5 backdrop-blur-md transition hover:border-neon-cyan/50 hover:text-neon-cyan hover:shadow-[0_0_14px_rgba(var(--glow-cyan-rgb),0.3)]"
+              >
+                <Linkedin className="h-5 w-5" />
+              </a>
+              <a
+                href={`mailto:${PROFILE.email}`}
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-primary/25 bg-white/5 backdrop-blur-md transition hover:border-neon-cyan/50 hover:text-neon-cyan hover:shadow-[0_0_14px_rgba(var(--glow-cyan-rgb),0.3)]"
+              >
+                <Mail className="h-5 w-5" />
+              </a>
             </div>
           </div>
 
           {/* Quick Links */}
-          <div className="lg:col-span-4 space-y-6 lg:pl-8">
-            <div>
-              <h3 className="text-base font-semibold text-white mb-3">Quick Links</h3>
-              <ul className="space-y-1.5 grid grid-cols-2 gap-x-4">
-                {FOOTER_LINKS.map((link) => (
-                  <li key={link.label}>
-                    <Link 
-                      href={link.href}
-                      className="text-sm text-gray-400 hover:text-indigo-400 transition-colors flex items-center gap-2 group"
-                    >
-                      <span className="w-1.5 h-1.5 rounded-full bg-indigo-500/50 group-hover:bg-indigo-400 transition-colors" />
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Newsletter Widget */}
-            <div className="max-w-sm p-4 rounded-xl bg-indigo-950/30 border border-indigo-500/20 backdrop-blur-sm">
-              <h4 className="text-sm font-semibold text-white mb-2">Stay Updated</h4>
-              <div className="flex gap-2">
-                <input 
-                  type="email" 
-                  placeholder="Enter your email" 
-                  className="bg-black/40 border border-indigo-500/20 rounded-lg px-3 py-2 text-sm w-full focus:outline-none focus:border-indigo-500/50 transition-colors text-white placeholder:text-gray-500"
-                />
-                <button className="p-2 rounded-lg bg-indigo-500 hover:bg-indigo-600 text-white transition-colors">
-                  <Send className="w-4 h-4" />
-                </button>
-              </div>
-            </div>
+          <div>
+            <h4 className="text-xl font-semibold">Quick Links</h4>
+            <ul className="mt-4 grid grid-cols-2 gap-x-6 gap-y-3">
+              {FOOTER_LINKS.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    href={link.href}
+                    className="text-foreground/80 hover:text-foreground transition"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
 
           {/* Contact Info */}
@@ -152,33 +122,24 @@ export default function Footer() {
                   {copied ? <Check className="w-3 h-3 text-green-400" /> : <Copy className="w-3 h-3" />}
                 </button>
               </li>
-              {PROFILE.contact && (
-                <li className="flex items-center gap-3 text-gray-400 text-sm">
-                  <Phone className="w-4 h-4 text-indigo-400 shrink-0" />
-                  <a href={`tel:${PROFILE.contact}`} className="hover:text-indigo-400 transition-colors">
-                    {PROFILE.contact}
-                  </a>
-                </li>
-              )}
-              
-              {/* Local Time Widget */}
-              <li className="pt-2 border-t border-indigo-500/10">
-                <div className="flex items-center gap-3 text-gray-400 text-sm">
-                  <Clock className="w-4 h-4 text-indigo-400" />
-                  <div className="flex flex-col">
-                    <span className="text-xs text-gray-500">Local Time</span>
-                    <span className="font-mono text-indigo-300">{time}</span>
-                  </div>
-                </div>
+              <li className="flex items-center gap-2 text-foreground/80">
+                <Phone className="h-5 w-5" />
+                <a href={`tel:${PROFILE.phone.replace(/\s+/g, "")}`} className="hover:underline">
+                  {PROFILE.phone}
+                </a>
               </li>
             </ul>
           </div>
-        </div>
+        </Reveal>
 
-        {/* Bottom Bar */}
-        <div className="pt-4 border-t border-indigo-500/20 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-gray-400 text-center md:text-left">
-            © {year} {cleanName}. All rights reserved.
+        {/* Divider */}
+        <div className="my-8 h-px w-full bg-border" />
+
+        {/* Bottom bar */}
+        <div className="flex flex-col-reverse gap-4 sm:flex-row items-center justify-between text-sm text-muted-foreground">
+          <p>© {year} {PROFILE.name}. All rights reserved.</p>
+          <p className="inline-flex items-center gap-1">
+            Made with <Heart className="h-4 w-4 text-pink-500" /> using React & Tailwind
           </p>
           
           {/* Tech Stack Badges */}

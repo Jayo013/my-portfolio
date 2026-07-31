@@ -1,21 +1,52 @@
 // src/app/api/contact/route.ts
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
-import { Resend } from "resend";
+import { contactSchema } from "@/lib/contact-schema";
 
 export const runtime = "nodejs"; // nodemailer needs Node
 
+// Best-effort in-memory limiter. Resets on cold start and isn't shared across
+// serverless instances — fine for deterring casual spam, not a hard guarantee.
+const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
+const RATE_LIMIT_MAX = 5;
+const requestLog = new Map<string, number[]>();
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const timestamps = (requestLog.get(ip) || []).filter((t) => now - t < RATE_LIMIT_WINDOW_MS);
+  timestamps.push(now);
+  requestLog.set(ip, timestamps);
+  return timestamps.length > RATE_LIMIT_MAX;
+}
+
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 export async function POST(req: Request) {
   try {
-    const { name, email, message } = await req.json();
-
-    if (!name || !email || !message) {
-      return NextResponse.json({ ok: false, error: "MISSING_FIELDS" }, { status: 400 });
+    const ip = req.headers.get("x-forwarded-for")?.split(",")[0].trim() || "unknown";
+    if (isRateLimited(ip)) {
+      return NextResponse.json({ ok: false, error: "RATE_LIMITED" }, { status: 429 });
     }
 
-    const preferred = (process.env.MAIL_PROVIDER || "smtp").toLowerCase();
-    const trySmtpFirst = preferred === "smtp";
-    const results: Array<{ provider: string; ok: boolean; error?: string }> = [];
+    const body = await req.json();
+    const parsed = contactSchema.safeParse(body);
+    if (!parsed.success) {
+      return NextResponse.json({ ok: false, error: "INVALID_INPUT" }, { status: 400 });
+    }
+    const { name, email, message } = parsed.data;
+
+    const host = process.env.SMTP_HOST!;
+    const port = Number(process.env.SMTP_PORT || 465);
+    const secure = String(process.env.SMTP_SECURE ?? "true").toLowerCase() === "true";
+    const user = process.env.SMTP_USER!;
+    const pass = process.env.SMTP_PASS!;
 
     async function sendWithSMTP() {
       const host = process.env.SMTP_HOST!;
@@ -104,39 +135,32 @@ export async function POST(req: Request) {
       if (send2.error) throw new Error(send2.error.message);
     }
 
-    try {
-      if (trySmtpFirst) {
-        await sendWithSMTP();
-        results.push({ provider: "smtp", ok: true });
-      } else {
-        await sendWithResend();
-        results.push({ provider: "resend", ok: true });
-      }
-    } catch (e: any) {
-      const firstErr = e?.message || String(e);
-      results.push({ provider: trySmtpFirst ? "smtp" : "resend", ok: false, error: firstErr });
-      // fallback
-      try {
-        if (trySmtpFirst) {
-          await sendWithResend();
-          results.push({ provider: "resend", ok: true });
-        } else {
-          await sendWithSMTP();
-          results.push({ provider: "smtp", ok: true });
-        }
-      } catch (e2: any) {
-        const secondErr = e2?.message || String(e2);
-        results.push({ provider: trySmtpFirst ? "resend" : "smtp", ok: false, error: secondErr });
-        return NextResponse.json({ ok: false, error: "SEND_FAILED", attempts: results }, { status: 500 });
-      }
-    }
+    await transporter.sendMail({
+      from: FROM,
+      to: TO,
+      replyTo: email,
+      subject: `New contact from ${name}`,
+      text: `From: ${name} <${email}>\n\n${message}`,
+      html: `
+        <h2>New message from your portfolio</h2>
+        <p><b>Name:</b> ${escapeHtml(name)}</p>
+        <p><b>Email:</b> ${escapeHtml(email)}</p>
+        <pre style="white-space:pre-wrap;font:inherit">${escapeHtml(message)}</pre>
+      `,
+    });
+
+    // auto-reply
+    await transporter.sendMail({
+      from: FROM,
+      to: email,
+      subject: `Thanks for reaching out, ${name}!`,
+      text: `Hi ${name},\n\nThanks for your message—I'll get back to you soon.\n\n— Jayoda`,
+    });
 
     return NextResponse.json({ ok: true });
-  } catch (err: any) {
-    console.error("[/api/contact] error:", err?.message || err);
-    return NextResponse.json(
-      { ok: false, error: err?.code || err?.message || "MAIL_ERROR" },
-      { status: 500 }
-    );
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : "MAIL_ERROR";
+    console.error("[/api/contact] error:", message);
+    return NextResponse.json({ ok: false, error: message }, { status: 500 });
   }
 }
