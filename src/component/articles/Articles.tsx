@@ -1,34 +1,44 @@
-import Section from "@/component/shared/Section";
-import Reveal from "@/component/shared/Reveal";
-import { Button } from "@/component/ui/button";
 import { ExternalLink } from "lucide-react";
 import { PROFILE } from "@/data/Portfolio";
 import { getMediumArticles } from "@/lib/medium";
 import ArticlesScroller from "@/component/articles/ArticlesScroller";
+import ArticlesHeader from "@/component/articles/ArticlesHeader";
+import ArticlesBackground from "@/component/articles/ArticlesBackground";
 
 export default async function Articles() {
   const articles = await getMediumArticles(PROFILE.medium, 10);
 
   return (
-    <Section id="articles" title="Articles">
-      <Reveal>
-        {articles.length > 0 ? (
-          <ArticlesScroller articles={articles} />
-        ) : (
-          <p className="text-center text-muted-foreground">
-            Couldn&apos;t load recent articles right now — check them out directly on Medium.
-          </p>
-        )}
-      </Reveal>
+    <section id="articles" className="py-20 sm:py-28">
+      <div className="mx-auto max-w-6xl px-4">
+        <div className="articles-hub relative overflow-hidden px-4 py-16 sm:px-8 sm:py-20">
+          <ArticlesBackground />
 
-      <div className="mt-8 flex justify-center">
-        <Button asChild variant="outline">
-          <a href={PROFILE.medium} target="_blank" rel="noreferrer" className="gap-2">
-            View all articles on Medium
-            <ExternalLink className="h-4 w-4" />
-          </a>
-        </Button>
+          <div className="relative">
+            <ArticlesHeader />
+
+            {articles.length > 0 ? (
+              <ArticlesScroller articles={articles} />
+            ) : (
+              <p className="ah-text-muted text-center">
+                Couldn&apos;t load recent articles right now — check them out directly on Medium.
+              </p>
+            )}
+
+            <div className="mt-12 flex justify-center">
+              <a
+                href={PROFILE.medium}
+                target="_blank"
+                rel="noreferrer"
+                className="ah-cta inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-bold tracking-widest"
+              >
+                VIEW ALL ARTICLES
+                <ExternalLink className="h-4 w-4" />
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
-    </Section>
+    </section>
   );
 }
