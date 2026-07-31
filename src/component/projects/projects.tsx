@@ -32,7 +32,7 @@ export default function Projects() {
 
   return (
     <Section id="projects" title="Mission Log">
-      <p className="mx-auto max-w-3xl text-center text-muted-foreground mb-8 sm:mb-10 -mt-4">
+      <p className="mx-auto max-w-3xl text-center text-muted-foreground mb-8 sm:mb-10 -mt--2">
         Completed and active builds — each one a mission with its own objective, loadout, and outcome.
       </p>
 

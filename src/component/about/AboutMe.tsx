@@ -63,7 +63,9 @@ function CertificationCard({ c }: { c: Certification }) {
         <Award className="h-4 w-4" />
       </span>
       <div className="min-w-0 flex-1">
-        <p className="font-heading text-sm font-medium leading-snug text-foreground">{c.name}</p>
+        <p className="font-display text-sm font-semibold uppercase leading-snug tracking-wide text-glow-cyan">
+          {c.name}
+        </p>
         <p className="text-xs text-muted-foreground">
           {c.issuer}
           {c.year ? ` · ${c.year}` : ""}

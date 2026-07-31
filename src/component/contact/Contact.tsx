@@ -70,7 +70,7 @@ export default function Contact() {
 
   return (
     <Section id="contact" title={<span className="block text-center">Establish Connection</span>}>
-      <p className="text-center text-sm sm:text-base text-muted-foreground -mt-3 mb-8">
+      <p className="text-center text-sm sm:text-base text-muted-foreground -mt--4 mb-8">
         Have a project in mind or want to discuss potential opportunities? I’d love to hear from you.
         Fill out the form below and I’ll get back to you as soon as possible.
       </p>

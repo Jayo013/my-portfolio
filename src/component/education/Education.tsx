@@ -14,7 +14,7 @@ export default function Education() {
         />
 
         <div className="space-y-8">
-          {EDUCATION.map((entry, i) => (
+          {EDUCATION.map((entry,  i) => (
             <Reveal key={entry.id} delay={i * 0.1}>
               <div className="relative flex gap-5 sm:gap-6">
                 {/* Icon node */}
