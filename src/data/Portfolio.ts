@@ -254,4 +254,46 @@ export const ACHIEVEMENTS = [
     period: "2025",
     blurb: "Completed 355+ hands-on labs and real-world challenges across Google Cloud technologies.",
   },
+  {
+    id: "exp-3",
+    company: "Freelance / Side Projects",
+    role: "Full-Stack Developer",
+    period: "2025 — Present",
+    points: [
+      "Developed scalable web apps using Next.js, Node.js and PostgreSQL.",
+      "Automated deployments using Docker + CI/CD pipelines.",
+    ],
+  },
+  
+  
+];
+
+export const BLOG_POSTS = [
+  {
+    title: "Docker Containers: The Ultimate Guide for Beginners",
+    description: "A comprehensive guide to understanding and using Docker containers for modern application development.",
+    date: "Dec 11, 2025",
+    readTime: "8 min read",
+    link: "https://medium.com/@pramudithakudagamage13/docker-containers-the-ultimate-guide-for-beginners-abc05f3a1301",
+    image: "/projects/protfolio.png", 
+    tags: ["Docker", "DevOps", "Containers"],
+  },
+  {
+    title: "Amazon ElastiCache Serverless Now Supports IPv6 and Dual Stack Connectivity",
+    description: "ElastiCache Serverless now supports IPv6 and dual-stack, enabling apps to use IPv4, IPv6, or both for better scalability and future-ready networking.",
+    date: "Apr 10, 2026",
+    readTime: "4 min read",
+    link: "https://aws.plainenglish.io/amazon-elasticache-serverless-now-supports-ipv6-and-dual-stack-connectivity-ed79c1817d51",
+    image: "/projects/protfolio.png",
+    tags: ["TypeScript", "Programming"],
+  },
+  {
+    title: "You’ve Been Ignoring AWS KMS — Here’s Why You Shouldn’t",
+    description: "A beginner’s complete guide to understanding encryption key management on AWS, explained simply and practically.",
+    date: "Apr 13, 2026",
+    readTime: "13 min read",
+    link: "https://medium.com/@pramudithakudagamage13/youve-been-ignoring-aws-kms-here-s-why-you-shouldn-t-15374ea90549",
+    image: "/projects/protfolio.png",
+    tags: ["NestJS", "Backend", "Node.js"],
+  },
 ];

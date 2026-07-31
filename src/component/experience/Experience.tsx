@@ -4,6 +4,7 @@ import { Briefcase } from "lucide-react";
 import Section from "@/component/shared/Section";
 import Reveal from "@/component/shared/Reveal";
 import { EXPERIENCE } from "@/data/Portfolio";
+import { Briefcase, Calendar } from "lucide-react";
 
 export default function Experience() {
   return (
