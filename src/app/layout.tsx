@@ -37,7 +37,7 @@ const rajdhani = localFont({
   ],
 });
 
-const TITLE = `${PROFILE.name} — ${PROFILE.role}`;
+const TITLE = PROFILE.name;
 const DESCRIPTION = PROFILE.tagline;
 
 export const metadata: Metadata = {
@@ -116,7 +116,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             __html: `
 (function () {
   try {
-    var stored = localStorage.getItem('theme');
+    var stored = localStorage.getItem('theme-pref');
     var useDark = stored ? stored === 'dark' : true;
     var root = document.documentElement;
     if (useDark) root.classList.add('dark'); else root.classList.remove('dark');

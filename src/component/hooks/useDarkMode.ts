@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 
-const STORAGE_KEY = "theme";
+const STORAGE_KEY = "theme-pref";
 
 export function useDarkMode() {
   const [dark, setDark] = useState(true);
